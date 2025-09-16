@@ -180,8 +180,8 @@ class EventTag(BaseModel):
     id_group: float = Field(
         ..., title="Tag group ID", description="The unique identifier for the tag main group."
     )
-    group_name: str = Field(
-        ..., title="Tag group name", description="The name of the tag main group."
+    group_name: str | None = Field(
+        None, title="Tag group name", description="The name of the tag main group."
     )
     code_short: str = Field(
         ..., title="Short Tag code", description="The short code for the tag."
@@ -256,8 +256,8 @@ class Event(BaseModel):
     rating: int = Field(
         0, title="Rating", description="A rating assigned to the event (if applicable)."
     )
-    id_contest_event_type: int = Field(
-        ..., title="Event Type ID",
+    id_contest_event_type: int | None = Field(
+        None, title="Event Type ID",
         description="The identifier for the type of event that occurred."
     )
     public: bool = Field(

@@ -594,8 +594,8 @@ class Judoka(BaseModel):
         title="Death Age",
         description="The age at which the judoka passed away, if applicable.",
     )
-    personal_picture: str = Field(
-        ..., title="Personal Picture", description="URL or path to the judoka's personal picture."
+    personal_picture: str | None = Field(
+        None, title="Personal Picture", description="URL or path to the judoka's personal picture."
     )
 
     @field_validator("birth_date", mode="after")

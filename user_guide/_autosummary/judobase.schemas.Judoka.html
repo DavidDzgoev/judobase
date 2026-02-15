@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>judobase.schemas.Judoka &mdash; judobase v1.0.2 documentation</title>
+  <title>judobase.schemas.Judoka &mdash; judobase v1.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://DavidDzgoev.github.io/judobase/user_guide/_autosummary/judobase.schemas.Judoka.html" />
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/documentation_options.js?v=411a527d"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -457,9 +457,17 @@
 <span class="w">         </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Death Age&quot;</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;personal_picture&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">               </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">               </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URL or path to the judoka&#39;s personal picture.&quot;</span><span class="p">,</span>
-<span class="w">         </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Personal Picture&quot;</span><span class="p">,</span>
-<span class="w">         </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">         </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Personal Picture&quot;</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">   </span><span class="p">},</span>
 <span class="w">   </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -477,8 +485,7 @@
 <span class="w">      </span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="s2">&quot;id_country&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="s2">&quot;country_short&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;categories&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;personal_picture&quot;</span>
+<span class="w">      </span><span class="s2">&quot;categories&quot;</span>
 <span class="w">   </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -510,7 +517,7 @@
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.id_country" title="judobase.schemas.Judoka.id_country"><code class="xref py py-obj docutils literal notranslate"><span class="pre">id_country</span> <span class="pre">(str)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.middle_name" title="judobase.schemas.Judoka.middle_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">middle_name</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.middle_name_local" title="judobase.schemas.Judoka.middle_name_local"><code class="xref py py-obj docutils literal notranslate"><span class="pre">middle_name_local</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
-<li><p><a class="reference internal" href="#judobase.schemas.Judoka.personal_picture" title="judobase.schemas.Judoka.personal_picture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">personal_picture</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#judobase.schemas.Judoka.personal_picture" title="judobase.schemas.Judoka.personal_picture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">personal_picture</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.picture_filename" title="judobase.schemas.Judoka.picture_filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">picture_filename</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.short_name" title="judobase.schemas.Judoka.short_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">short_name</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#judobase.schemas.Judoka.side" title="judobase.schemas.Judoka.side"><code class="xref py py-obj docutils literal notranslate"><span class="pre">side</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
@@ -677,7 +684,7 @@
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="judobase.schemas.Judoka.personal_picture">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">personal_picture</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#judobase.schemas.Judoka.personal_picture" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">personal_picture</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#judobase.schemas.Judoka.personal_picture" title="Link to this definition"></a></dt>
 <dd><p>URL or path to the judoka’s personal picture.</p>
 </dd></dl>
 

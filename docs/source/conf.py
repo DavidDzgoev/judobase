@@ -3,11 +3,12 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../.."))
 
-project = 'judobase'
-copyright = '2025, ddzgoev'
-author = 'ddzgoev'
+project = "judobase"
+copyright = "2025, ddzgoev"
+author = "ddzgoev"
 
 from judobase import __version__
+
 release = __version__
 
 extensions = [
@@ -16,14 +17,14 @@ extensions = [
     "sphinx.ext.autosummary",
 ]
 
-templates_path = ['_templates']
+templates_path = ["_templates"]
 exclude_patterns = []
 
-language = 'en'
+language = "en"
 
 html_baseurl = "https://DavidDzgoev.github.io/judobase/"
 html_theme = "sphinx_rtd_theme"
-html_static_path = ['_static']
+html_static_path = ["_static"]
 html_context = {
     "display_github": True,
     "github_user": "DavidDzgoev",

@@ -28,7 +28,7 @@ class TestJudobase:
 
         async with JudoBase() as client:
             comps = await client.competitions_in_range(
-                datetime(2023,5,1, tzinfo=timezone.utc),
+                datetime(2023, 5, 1, tzinfo=timezone.utc),
                 datetime(2023, 8, 1, tzinfo=timezone.utc),
             )
             mock_get_competition_list.assert_called_once_with()
@@ -50,25 +50,16 @@ class TestJudobase:
 
     @patch("judobase.base.ContestAPI.find_contests", new_callable=AsyncMock)
     @pytest.mark.asyncio
-    async def test_contests_by_competition_id(
-        self,
-        mock_find_contests,
-        get_test_data
-    ):
+    async def test_contests_by_competition_id(self, mock_find_contests, get_test_data):
         """Test contests_by_competition_id response."""
         test_data = get_test_data("contests_by_competition_id.json")
-        mock_find_contests.return_value = [
-            Contest(**cont) for cont in test_data["mock_response"]
-        ]
+        mock_find_contests.return_value = [Contest(**cont) for cont in test_data["mock_response"]]
         async with JudoBase() as client:
             await client.contests_by_competition_id(competition_id=2869)
             mock_find_contests.called_once_with("2869")
 
             mock_find_contests.reset_mock()
-            await client.contests_by_competition_id(
-                competition_id=2869,
-                include_events=True
-            )
+            await client.contests_by_competition_id(competition_id=2869, include_events=True)
             assert mock_find_contests.call_count == len(test_data["mock_response"]) + 1
 
     @patch("judobase.base.CompetitionAPI.get_competition_info")

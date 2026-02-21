@@ -9,7 +9,7 @@ async def main():
         contests = await api.contests_by_competition_id(
             competition_id=2869,
             weight="-60",
-            include_events=True  # Include contest events in the response
+            include_events=True,  # Include contest events in the response
         )
 
         throw_stats = defaultdict(lambda: {"total": 0})
@@ -30,8 +30,8 @@ async def main():
         print(throw_stats["Seoi-nage"]["total"])  # Output: 5
         print(throw_stats["Seoi-nage"]["Right"])  # Output: 3
         print(
-            sorted(
-                throw_stats.items(), key=lambda x: x[1]["total"], reverse=True
-            )[12])  # Output: ('Juji-gatame', {'total': 2, 'Ippon': 2, 'Left': 2})
+            sorted(throw_stats.items(), key=lambda x: x[1]["total"], reverse=True)[12]
+        )  # Output: ('Juji-gatame', {'total': 2, 'Ippon': 2, 'Left': 2})
+
 
 asyncio.run(main())

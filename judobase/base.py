@@ -82,7 +82,7 @@ class ContestAPI(_Base):
         weight_id: str = "",
         person_id: str = "",
         include: str = "info",
-        contest_code: str=""
+        contest_code: str = "",
     ) -> list[Contest]:
         """Fetches list of contests.
 
@@ -135,7 +135,8 @@ class CountryAPI(_Base):
     async def get_country_list(self) -> list[CountryShort]:
         """Fetches all countries short information."""
         return [
-            CountryShort(**country) for country in await self._get_json(
+            CountryShort(**country)
+            for country in await self._get_json(
                 request_params={"params[action]": "country.get_list"}
             )
         ]

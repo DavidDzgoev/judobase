@@ -36,13 +36,8 @@ class JudoBase(CompetitionAPI, ContestAPI, JudokaAPI, CountryAPI):
 
         return [contest for sublist in tasks_results for contest in sublist]
 
-
     async def contests_by_competition_id(
-        self,
-        competition_id: int | str,
-        weight: WeightEnum = "",
-        *,
-        include_events: bool = False
+        self, competition_id: int | str, weight: WeightEnum = "", *, include_events: bool = False
     ) -> list[Contest]:
         """Retrieves data for all contests using concurrent API calls.
 
@@ -51,14 +46,11 @@ class JudoBase(CompetitionAPI, ContestAPI, JudokaAPI, CountryAPI):
         """
         contests = await self.find_contests(
             competition_id=str(competition_id),
-            weight_id=WEIGHT_ID_MAPPING[weight] if weight else ""
+            weight_id=WEIGHT_ID_MAPPING[weight] if weight else "",
         )
         if include_events:
             tasks = [
-                self.find_contests(
-                    contest_code=contest.contest_code_long,
-                    include="info,events"
-                )
+                self.find_contests(contest_code=contest.contest_code_long, include="info,events")
                 for contest in contests
             ]
             tasks_results = await asyncio.gather(*tasks)

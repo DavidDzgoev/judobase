@@ -29,10 +29,7 @@ class TestBase:
     @pytest.mark.asyncio
     async def test_get_json_success(self, mock_session, mock_api_response):
         """Test _get_json with a successful API response."""
-        mock_api_response(
-            mock_response={"data": "test_response"},
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response={"data": "test_response"}, mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with _Base() as client:
@@ -49,9 +46,7 @@ class TestBase:
     async def test_get_json_failure(self, mock_session, mock_api_response):
         """Test _get_json with a successful API response."""
         mock_api_response(
-            status=500,
-            mock_response={"data": "test_response"},
-            mock_session=mock_session
+            status=500, mock_response={"data": "test_response"}, mock_session=mock_session
         )
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
@@ -67,25 +62,18 @@ class TestCompetitionAPI:
     async def test_get_competition_list(self, mock_session, mock_api_response, get_test_data):
         """Test get_competition_list response."""
         test_data = get_test_data("get_competition_list.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with CompetitionAPI() as client:
                 result = await client.get_competition_list()
                 assert result == [Competition(**comp) for comp in test_data["expected"]]
 
-
     @pytest.mark.asyncio
     async def test_get_competition_info(self, mock_session, mock_api_response, get_test_data):
         """Test get_competition_info response."""
         test_data = get_test_data("get_competition_info.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with CompetitionAPI() as client:
@@ -100,10 +88,7 @@ class TestContestAPI:
     async def test_find_contests(self, mock_session, mock_api_response, get_test_data):
         """Test find_contests response."""
         test_data = get_test_data("find_contests.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with ContestAPI() as client:
@@ -118,10 +103,7 @@ class TestJudokaAPI:
     async def test_get_judoka_info(self, mock_session, mock_api_response, get_test_data):
         """Test get_judoka_info response."""
         test_data = get_test_data("get_judoka_info.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with JudokaAPI() as client:
@@ -136,10 +118,7 @@ class TestCountryAPI:
     async def test_get_country_info(self, mock_session, mock_api_response, get_test_data):
         """Test get_country_info response."""
         test_data = get_test_data("get_country_info.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with CountryAPI() as client:
@@ -150,10 +129,7 @@ class TestCountryAPI:
     async def test_get_country_list(self, mock_session, mock_api_response, get_test_data):
         """Test get_country_list response."""
         test_data = get_test_data("get_country_list.json")
-        mock_api_response(
-            mock_response=test_data["mock_response"],
-            mock_session=mock_session
-        )
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
 
         with patch("judobase.base.ClientSession", return_value=mock_session):
             async with CountryAPI() as client:

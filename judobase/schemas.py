@@ -28,6 +28,7 @@ class WeightEnum(str, Enum):
     F78 = "-78"
     F78PLUS = "+78"
 
+
 WEIGHT_ID_MAPPING = {
     WeightEnum.M60: "1",
     WeightEnum.M66: "2",
@@ -44,6 +45,7 @@ WEIGHT_ID_MAPPING = {
     WeightEnum.F78: "13",
     WeightEnum.F78PLUS: "14",
 }
+
 
 class Competition(BaseModel):
     """Represents the data about competition which provide the judobase api."""
@@ -138,8 +140,8 @@ class Competition(BaseModel):
 
         formats = [
             "%Y-%m-%dT%H:%M:%SZ",  # ISO 8601 with time and timezone
-            "%Y/%m/%d",            # Date format with slashes
-            "%Y-%m-%d"             # Date format with dashes
+            "%Y/%m/%d",  # Date format with slashes
+            "%Y-%m-%d",  # Date format with dashes
         ]
 
         for fmt in formats:
@@ -164,16 +166,11 @@ class Competition(BaseModel):
         return cls.parse_date(value)
 
 
-
 class EventTag(BaseModel):
     """Represents the data about event tags."""
 
-    name: str = Field(
-        ..., title="Event name", description="The name of happened event."
-    )
-    id_tag: str = Field(
-        ..., title="Tag ID", description="The unique identifier for the tag."
-    )
+    name: str = Field(..., title="Event name", description="The name of happened event.")
+    id_tag: str = Field(..., title="Tag ID", description="The unique identifier for the tag.")
     id_event: float = Field(
         ..., title="Event ID", description="The unique identifier for the event."
     )
@@ -183,9 +180,7 @@ class EventTag(BaseModel):
     group_name: str | None = Field(
         None, title="Tag group name", description="The name of the tag main group."
     )
-    code_short: str = Field(
-        ..., title="Short Tag code", description="The short code for the tag."
-    )
+    code_short: str = Field(..., title="Short Tag code", description="The short code for the tag.")
     public: int = Field(
         ..., title="Public Available", description="Indicates if the tag is publicly available."
     )
@@ -197,21 +192,13 @@ class EventTag(BaseModel):
 class EventActor(BaseModel):
     """Represents the data about event actors."""
 
-    actor_type: str = Field(
-        ..., title="Actor Type", description="The actor type."
-    )
-    id_event: str = Field(
-        ..., title="Event ID", description="The unique identifier for the event."
-    )
+    actor_type: str = Field(..., title="Actor Type", description="The actor type.")
+    id_event: str = Field(..., title="Event ID", description="The unique identifier for the event.")
     id_actor: str = Field(
         ..., title="Actor ID", description="The unique identifier for the tag actor."
     )
-    family_name: str = Field(
-        ..., title="Family Name", description="Family name of the competitor."
-    )
-    given_name: str = Field(
-        ..., title="Given Name", description="Given name of the competitor."
-    )
+    family_name: str = Field(..., title="Family Name", description="Family name of the competitor.")
+    given_name: str = Field(..., title="Given Name", description="Given name of the competitor.")
     id_person: str = Field(
         ..., title="Person ID", description="The unique identifier for the competitor."
     )
@@ -229,9 +216,7 @@ class Event(BaseModel):
     Provided by the ``contest.fnd`` method of Judobase API with ``events`` in ``part`` param.
     """
 
-    id_event: str = Field(
-        ..., title="Event ID", description="The unique identifier for the event."
-    )
+    id_event: str = Field(..., title="Event ID", description="The unique identifier for the event.")
     contest_code_long: str = Field(
         ..., title="Contest Code", description="The long contest code representing the event."
     )
@@ -239,8 +224,9 @@ class Event(BaseModel):
         ..., title="Real Time", description="The actual time in the match when the event occurred."
     )
     time_sc: float = Field(
-        ..., title="Sport Clock Time",
-        description="The official match clock time at the event moment."
+        ...,
+        title="Sport Clock Time",
+        description="The official match clock time at the event moment.",
     )
     tags: list[EventTag] = Field(
         None, title="Tags", description="A list of tags describing the nature of the event."
@@ -251,14 +237,15 @@ class Event(BaseModel):
     video_offset: float | None = Field(
         None,
         title="Video Offset",
-        description="The time offset in the match video where the event appears."
+        description="The time offset in the match video where the event appears.",
     )
     rating: int = Field(
         0, title="Rating", description="A rating assigned to the event (if applicable)."
     )
     id_contest_event_type: int | None = Field(
-        None, title="Event Type ID",
-        description="The identifier for the type of event that occurred."
+        None,
+        title="Event Type ID",
+        description="The identifier for the type of event that occurred.",
     )
     public: bool = Field(
         True, title="Public", description="Indicates if the event is publicly accessible."
@@ -486,8 +473,9 @@ class Contest(BaseModel):
         None, title="Fight Team ID", description="Identifier for the fight team."
     )
     events: list[Event] | None = Field(
-        None, title="Contests events",
-        description="contest events like score, osaekomi, shido, etc."
+        None,
+        title="Contests events",
+        description="contest events like score, osaekomi, shido, etc.",
     )
 
     @field_validator("updated_at", mode="after")
@@ -615,9 +603,7 @@ class CountryShort(BaseModel):
     id_country: str = Field(
         ..., title="Country ID", description="The unique identifier for the country."
     )
-    ioc: str = Field(
-        ..., title="IOC code", description="International Olympic Committee code."
-    )
+    ioc: str = Field(..., title="IOC code", description="International Olympic Committee code.")
 
 
 class Country(BaseModel):

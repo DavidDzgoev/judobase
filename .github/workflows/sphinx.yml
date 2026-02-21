@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: '3.x'
+          python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r requirements/docs.txt
+        run: uv sync --extra docs
 
       - name: Extract version from release name
         run: |
@@ -26,8 +26,7 @@ jobs:
           echo "__version__ = \"$VERSION\"" > ./judobase/version.py
 
       - name: Build documentation
-        run: |
-          sphinx-build -b html docs/source docs/build/html
+        run: uv run sphinx-build -b html docs/source docs/build/html
 
       - name: Disable Jekyll
         run: touch docs/build/html/.nojekyll

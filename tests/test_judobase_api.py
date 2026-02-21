@@ -56,7 +56,7 @@ class TestJudobase:
         mock_find_contests.return_value = [Contest(**cont) for cont in test_data["mock_response"]]
         async with JudoBase() as client:
             await client.contests_by_competition_id(competition_id=2869)
-            mock_find_contests.called_once_with("2869")
+            mock_find_contests.assert_called_once_with(competition_id="2869", weight_id="")
 
             mock_find_contests.reset_mock()
             await client.contests_by_competition_id(competition_id=2869, include_events=True)

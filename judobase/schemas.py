@@ -62,23 +62,23 @@ class Competition(BaseModel):
         ..., title="End Date", description="The end date of the competition in YYYY/MM/DD format."
     )
     name: str = Field(..., title="Competition Name", description="The name of the competition.")
-    has_results: int = Field(
+    has_results: int | None = Field(
         None, title="Results Available", description="Indicates if results are available."
     )
     city: str = Field(..., title="City", description="The city where the competition is held.")
-    street: str = Field(
+    street: str | None = Field(
         None, title="Street", description="The street where the competition venue is located."
     )
-    street_no: str = Field(
+    street_no: str | None = Field(
         None, title="Street Number", description="The street number of the competition venue."
     )
-    comp_year: int = Field(
+    comp_year: int | None = Field(
         None, title="Competition Year", description="The year in which the competition takes place."
     )
-    prime_event: bool = Field(
+    prime_event: bool | None = Field(
         None, title="Prime Event", description="Indicates if this is a prime event."
     )
-    continent_short: str = Field(
+    continent_short: str | None = Field(
         None, title="Continent Code", description="The short code for the continent."
     )
     has_logo: bool = Field(
@@ -90,7 +90,7 @@ class Competition(BaseModel):
     updated_at_ts: datetime = Field(
         ..., title="Last Updated Timestamp", description="The timestamp of the last update."
     )
-    updated_at: datetime = Field(
+    updated_at: datetime | None = Field(
         None, title="Last Updated", description="The last update date and time."
     )
     timezone: str | None = Field(
@@ -118,8 +118,10 @@ class Competition(BaseModel):
     external_id: str | None = Field(
         None, title="External ID", description="The external identifier for the competition."
     )
-    id_draw_type: int = Field(None, title="Draw Type ID", description="The ID of the draw type.")
-    ages: list[str] = Field(
+    id_draw_type: int | None = Field(
+        None, title="Draw Type ID", description="The ID of the draw type."
+    )
+    ages: list[str] | None = Field(
         None, title="Age Categories", description="List of age categories for the competition."
     )
     rank_name: str | None = Field(
@@ -228,10 +230,10 @@ class Event(BaseModel):
         title="Sport Clock Time",
         description="The official match clock time at the event moment.",
     )
-    tags: list[EventTag] = Field(
+    tags: list[EventTag] | None = Field(
         None, title="Tags", description="A list of tags describing the nature of the event."
     )
-    actors: list[EventActor] = Field(
+    actors: list[EventActor] | None = Field(
         None, title="Actors", description="A list of participants involved in the event."
     )
     video_offset: float | None = Field(

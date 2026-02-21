@@ -54,6 +54,26 @@ class TestBase:
                 with pytest.raises(ConnectionError):
                     await client._get_json({"key": "value"})
 
+    @pytest.mark.asyncio
+    async def test_get_json_dict_failure_for_list_response(self, mock_session, mock_api_response):
+        """Test _get_json_dict raises TypeError when API returns list."""
+        mock_api_response(mock_response=[{"data": "test_response"}], mock_session=mock_session)
+
+        with patch("judobase.base.ClientSession", return_value=mock_session):
+            async with _Base() as client:
+                with pytest.raises(TypeError, match="Expected JSON object response."):
+                    await client._get_json_dict({"key": "value"})
+
+    @pytest.mark.asyncio
+    async def test_get_json_list_failure_for_dict_response(self, mock_session, mock_api_response):
+        """Test _get_json_list raises TypeError when API returns dict."""
+        mock_api_response(mock_response={"data": "test_response"}, mock_session=mock_session)
+
+        with patch("judobase.base.ClientSession", return_value=mock_session):
+            async with _Base() as client:
+                with pytest.raises(TypeError, match="Expected JSON list response."):
+                    await client._get_json_list({"key": "value"})
+
 
 class TestCompetitionAPI:
     """Test cases for the Competition API class."""

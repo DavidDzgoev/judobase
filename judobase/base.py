@@ -42,6 +42,20 @@ class _Base:
             raise ConnectionError(f"{response.status}")
         return await response.json()
 
+    async def _get_json_dict(self, request_params: dict) -> dict:
+        """Return JSON response and ensure it is an object."""
+        response = await self._get_json(request_params)
+        if not isinstance(response, dict):
+            raise TypeError("Expected JSON object response.")
+        return response
+
+    async def _get_json_list(self, request_params: dict) -> list[dict]:
+        """Return JSON response and ensure it is a list of objects."""
+        response = await self._get_json(request_params)
+        if not isinstance(response, list):
+            raise TypeError("Expected JSON list response.")
+        return response
+
 
 class CompetitionAPI(_Base):
     """Handles competition-related API requests."""
@@ -50,7 +64,7 @@ class CompetitionAPI(_Base):
         """Fetches list of competitions."""
         return [
             Competition(**comp)
-            for comp in await self._get_json(
+            for comp in await self._get_json_list(
                 request_params={
                     "params[action]": "competition.get_list",
                     "params[year]": years,
@@ -64,7 +78,7 @@ class CompetitionAPI(_Base):
     async def get_competition_info(self, competition_id: str) -> Competition:
         """Fetches details of a specific competition."""
         return Competition(
-            **await self._get_json(
+            **await self._get_json_dict(
                 request_params={
                     "params[action]": "competition.info",
                     "params[id_competition]": competition_id,
@@ -88,7 +102,7 @@ class ContestAPI(_Base):
 
         include can contain a comma-separated list of: info, events.
         """
-        request_result = await self._get_json(
+        request_result = await self._get_json_dict(
             request_params={
                 "params[action]": "contest.find",
                 "params[id_competition]": competition_id,
@@ -109,7 +123,7 @@ class JudokaAPI(_Base):
     async def get_judoka_info(self, competitor_id: str) -> Judoka:
         """Fetches judoka information."""
         return Judoka(
-            **await self._get_json(
+            **await self._get_json_dict(
                 request_params={
                     "params[action]": "competitor.info",
                     "params[id_person]": competitor_id,
@@ -124,7 +138,7 @@ class CountryAPI(_Base):
     async def get_country_info(self, country_id: str) -> Country:
         """Fetches country information."""
         return Country(
-            **await self._get_json(
+            **await self._get_json_dict(
                 request_params={
                     "params[action]": "country.info",
                     "params[id_country]": country_id,
@@ -136,7 +150,7 @@ class CountryAPI(_Base):
         """Fetches all countries short information."""
         return [
             CountryShort(**country)
-            for country in await self._get_json(
+            for country in await self._get_json_list(
                 request_params={"params[action]": "country.get_list"}
             )
         ]

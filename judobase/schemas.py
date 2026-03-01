@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from enum import Enum
 from typing import Any
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import AliasChoices, BaseModel, Field, field_validator
 
 
 class WeightEnum(str, Enum):
@@ -593,6 +593,32 @@ class Judoka(BaseModel):
     def parse_birth_date(cls, value: datetime) -> datetime:
         """Ensures the birth_date field is set to UTC timezone."""
         return value.replace(tzinfo=timezone.utc)
+
+
+class CurrentRating(BaseModel):
+    """Represents current WRL rows for a competitor.
+
+    Provided by the ``competitor.wrl_current`` method of Judobase API.
+    """
+
+    points: str = Field(
+        ...,
+        title="Points",
+        description="Points in the ranking snapshot.",
+        validation_alias=AliasChoices("sum_points", "points"),
+    )
+    place: str = Field(..., title="Place", description="Place in the ranking snapshot.")
+    age: str = Field(..., title="Age Category", description="Age category, for example Seniors.")
+    weight: str = Field(..., title="Weight", description="Weight class, for example -60.")
+
+
+class RatingHistory(CurrentRating):
+    """Represents historical WRL rows for a competitor.
+
+    Provided by the ``competitor.wrl_history`` method of Judobase API.
+    """
+
+    version: str = Field(..., title="Version", description="Version label of the ranking snapshot.")
 
 
 class CountryShort(BaseModel):

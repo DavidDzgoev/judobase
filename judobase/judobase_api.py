@@ -3,11 +3,21 @@
 import asyncio
 from datetime import datetime
 
-from judobase.base import CompetitionAPI, ContestAPI, CountryAPI, CountryShort, JudokaAPI
-from judobase.schemas import WEIGHT_ID_MAPPING, Competition, Contest, Country, Judoka, WeightEnum
+from judobase.base import CompetitionAPI, ContestAPI, CountryAPI, JudokaAPI, RatingAPI
+from judobase.schemas import (
+    WEIGHT_ID_MAPPING,
+    Competition,
+    Contest,
+    Country,
+    CountryShort,
+    CurrentRating,
+    Judoka,
+    RatingHistory,
+    WeightEnum,
+)
 
 
-class JudoBase(CompetitionAPI, ContestAPI, JudokaAPI, CountryAPI):
+class JudoBase(CompetitionAPI, ContestAPI, JudokaAPI, CountryAPI, RatingAPI):
     """Class for extended interacting with the JudoBase API.
 
     Provides methods to retrieve information about competitions, contests, judokas, and countries.
@@ -77,3 +87,11 @@ class JudoBase(CompetitionAPI, ContestAPI, JudokaAPI, CountryAPI):
     async def all_countries(self) -> list[CountryShort]:
         """Retrieves short data for all the countries."""
         return await self.get_country_list()
+
+    async def current_rating_by_id(self, judoka_id: int | str) -> list[CurrentRating]:
+        """Retrieves current WRL rows for a specific judoka."""
+        return await self.get_current_rating(str(judoka_id))
+
+    async def rating_history_by_id(self, judoka_id: int | str) -> list[RatingHistory]:
+        """Retrieves WRL history rows for a specific judoka."""
+        return await self.get_rating_history(str(judoka_id))

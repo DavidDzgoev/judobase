@@ -4,7 +4,15 @@
 
 from aiohttp import ClientSession
 
-from judobase.schemas import Competition, Contest, Country, CountryShort, Judoka
+from judobase.schemas import (
+    Competition,
+    Contest,
+    Country,
+    CountryShort,
+    CurrentRating,
+    Judoka,
+    RatingHistory,
+)
 
 BASE_URL = "https://data.ijf.org/api/"
 HTTP_STATUS_OK = 200
@@ -130,6 +138,34 @@ class JudokaAPI(_Base):
                 }
             )
         )
+
+
+class RatingAPI(_Base):
+    """Handles rating-related API requests."""
+
+    async def get_rating_history(self, competitor_id: str) -> list[RatingHistory]:
+        """Fetches rating history."""
+        return [
+            RatingHistory(**rating)
+            for rating in await self._get_json_list(
+                request_params={
+                    "params[action]": "competitor.wrl_history",
+                    "params[id_person]": competitor_id,
+                }
+            )
+        ]
+
+    async def get_current_rating(self, competitor_id: str) -> list[CurrentRating]:
+        """Fetches current rating rows for a competitor."""
+        return [
+            CurrentRating(**rating)
+            for rating in await self._get_json_list(
+                request_params={
+                    "params[action]": "competitor.wrl_current",
+                    "params[id_person]": competitor_id,
+                }
+            )
+        ]
 
 
 class CountryAPI(_Base):

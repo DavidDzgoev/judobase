@@ -1,0 +1,20 @@
+{
+  "mock_response": [
+    {
+      "version": "world_ranking_sen_2025_12",
+      "sum_points": "4124",
+      "place": "7",
+      "age": "Seniors",
+      "weight": "-60"
+    }
+  ],
+  "expected": [
+    {
+      "version": "world_ranking_sen_2025_12",
+      "points": "4124",
+      "place": "7",
+      "age": "Seniors",
+      "weight": "-60"
+    }
+  ]
+}

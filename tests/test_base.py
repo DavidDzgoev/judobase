@@ -3,8 +3,24 @@ from unittest.mock import patch
 import pytest
 from aiohttp import ClientSession
 
-from judobase import Competition, Contest, Country, CountryShort, Judoka
-from judobase.base import BASE_URL, CompetitionAPI, ContestAPI, CountryAPI, JudokaAPI, _Base
+from judobase import (
+    Competition,
+    Contest,
+    Country,
+    CountryShort,
+    CurrentRating,
+    Judoka,
+    RatingHistory,
+)
+from judobase.base import (
+    BASE_URL,
+    CompetitionAPI,
+    ContestAPI,
+    CountryAPI,
+    JudokaAPI,
+    RatingAPI,
+    _Base,
+)
 
 
 class TestBase:
@@ -155,3 +171,29 @@ class TestCountryAPI:
             async with CountryAPI() as client:
                 result = await client.get_country_list()
                 assert result == [CountryShort(**country) for country in test_data["expected"]]
+
+
+class TestRatingAPI:
+    """Test cases for the Rating API class."""
+
+    @pytest.mark.asyncio
+    async def test_get_rating_history(self, mock_session, mock_api_response, get_test_data):
+        """Test get_rating_history response."""
+        test_data = get_test_data("get_rating_history.json")
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
+
+        with patch("judobase.base.ClientSession", return_value=mock_session):
+            async with RatingAPI() as client:
+                result = await client.get_rating_history("test_id")
+                assert result == [RatingHistory(**row) for row in test_data["expected"]]
+
+    @pytest.mark.asyncio
+    async def test_get_current_rating(self, mock_session, mock_api_response, get_test_data):
+        """Test get_current_rating response."""
+        test_data = get_test_data("get_current_rating.json")
+        mock_api_response(mock_response=test_data["mock_response"], mock_session=mock_session)
+
+        with patch("judobase.base.ClientSession", return_value=mock_session):
+            async with RatingAPI() as client:
+                result = await client.get_current_rating("test_id")
+                assert result == [CurrentRating(**row) for row in test_data["expected"]]

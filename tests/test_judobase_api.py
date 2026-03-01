@@ -93,3 +93,19 @@ class TestJudobase:
         async with JudoBase() as client:
             await client.all_countries()
             mock_get_country_list.assert_called_once_with()
+
+    @patch("judobase.base.RatingAPI.get_current_rating")
+    @pytest.mark.asyncio
+    async def test_current_rating_by_id(self, mock_get_current_rating):
+        """Test current_rating_by_id response."""
+        async with JudoBase() as client:
+            await client.current_rating_by_id(123)
+            mock_get_current_rating.assert_called_once_with("123")
+
+    @patch("judobase.base.RatingAPI.get_rating_history")
+    @pytest.mark.asyncio
+    async def test_rating_history_by_id(self, mock_get_rating_history):
+        """Test rating_history_by_id response."""
+        async with JudoBase() as client:
+            await client.rating_history_by_id(123)
+            mock_get_rating_history.assert_called_once_with("123")

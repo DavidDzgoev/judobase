@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API &mdash; judobase v2.0.0 documentation</title>
+  <title>API &mdash; judobase v2.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://DavidDzgoev.github.io/judobase/references/api.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=aa039f9c"></script>
+      <script src="../_static/documentation_options.js?v=0e7b1b85"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -60,6 +60,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#judobase.base.CompetitionAPI"><code class="docutils literal notranslate"><span class="pre">CompetitionAPI</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#judobase.base.ContestAPI"><code class="docutils literal notranslate"><span class="pre">ContestAPI</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#judobase.base.JudokaAPI"><code class="docutils literal notranslate"><span class="pre">JudokaAPI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#judobase.base.RatingAPI"><code class="docutils literal notranslate"><span class="pre">RatingAPI</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#judobase.base.CountryAPI"><code class="docutils literal notranslate"><span class="pre">CountryAPI</span></code></a></li>
 </ul>
 </li>
@@ -165,6 +166,25 @@ directly.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="judobase.base.RatingAPI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">judobase.base.</span></span><span class="sig-name descname"><span class="pre">RatingAPI</span></span><a class="headerlink" href="#judobase.base.RatingAPI" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_Base</span></code></p>
+<p>Handles rating-related API requests.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="judobase.base.RatingAPI.get_rating_history">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_rating_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">competitor_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">RatingHistory</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#judobase.base.RatingAPI.get_rating_history" title="Link to this definition"></a></dt>
+<dd><p>Fetches rating history.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="judobase.base.RatingAPI.get_current_rating">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">competitor_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">CurrentRating</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#judobase.base.RatingAPI.get_current_rating" title="Link to this definition"></a></dt>
+<dd><p>Fetches current rating rows for a competitor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="judobase.base.CountryAPI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">judobase.base.</span></span><span class="sig-name descname"><span class="pre">CountryAPI</span></span><a class="headerlink" href="#judobase.base.CountryAPI" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_Base</span></code></p>
@@ -190,7 +210,7 @@ directly.</p>
 <dl class="py class" id="module-judobase.judobase_api">
 <dt class="sig sig-object py" id="judobase.judobase_api.JudoBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">judobase.judobase_api.</span></span><span class="sig-name descname"><span class="pre">JudoBase</span></span><a class="headerlink" href="#judobase.judobase_api.JudoBase" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#judobase.base.CompetitionAPI" title="judobase.base.CompetitionAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompetitionAPI</span></code></a>, <a class="reference internal" href="#judobase.base.ContestAPI" title="judobase.base.ContestAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContestAPI</span></code></a>, <a class="reference internal" href="#judobase.base.JudokaAPI" title="judobase.base.JudokaAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">JudokaAPI</span></code></a>, <a class="reference internal" href="#judobase.base.CountryAPI" title="judobase.base.CountryAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountryAPI</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#judobase.base.CompetitionAPI" title="judobase.base.CompetitionAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompetitionAPI</span></code></a>, <a class="reference internal" href="#judobase.base.ContestAPI" title="judobase.base.ContestAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContestAPI</span></code></a>, <a class="reference internal" href="#judobase.base.JudokaAPI" title="judobase.base.JudokaAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">JudokaAPI</span></code></a>, <a class="reference internal" href="#judobase.base.CountryAPI" title="judobase.base.CountryAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountryAPI</span></code></a>, <a class="reference internal" href="#judobase.base.RatingAPI" title="judobase.base.RatingAPI"><code class="xref py py-class docutils literal notranslate"><span class="pre">RatingAPI</span></code></a></p>
 <p>Class for extended interacting with the JudoBase API.</p>
 <p>Provides methods to retrieve information about competitions, contests, judokas, and countries.</p>
 <dl class="py method">
@@ -241,6 +261,18 @@ throw, osaekomi or shido.</p>
 <dt class="sig sig-object py" id="judobase.judobase_api.JudoBase.all_countries">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_countries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../user_guide/_autosummary/judobase.schemas.CountryShort.html#judobase.schemas.CountryShort" title="judobase.schemas.CountryShort"><span class="pre">CountryShort</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#judobase.judobase_api.JudoBase.all_countries" title="Link to this definition"></a></dt>
 <dd><p>Retrieves short data for all the countries.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="judobase.judobase_api.JudoBase.current_rating_by_id">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_rating_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judoka_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">CurrentRating</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#judobase.judobase_api.JudoBase.current_rating_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieves current WRL rows for a specific judoka.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="judobase.judobase_api.JudoBase.rating_history_by_id">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rating_history_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judoka_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">RatingHistory</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#judobase.judobase_api.JudoBase.rating_history_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieves WRL history rows for a specific judoka.</p>
 </dd></dl>
 
 </dd></dl>
